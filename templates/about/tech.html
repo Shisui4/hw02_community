@@ -1,13 +1,35 @@
-<html lang="ru">
 {% extends "base.html" %}
 {% block title %} Страница с информацией об Авторе {% endblock %}
-{% block header %} Добрый день. Меня зовут Сергей, я изучаю курсы программирования Python. {% endblock %}
-{% block content%}
-    <p> Сейчас я тестирую  эту страницу и пытаюсь её подключить))
-    <br>Так же использую пока только подавал, мб. в дальнейшем подключу заголовки и картинки.</p>
-    <br><span style="color:red">Сейчас сроки поджимают,
-    в связи с этим  я закончу этот блок в свободное время)))</span>
 
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-3 mt-1">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="h3">
+                Об авторе
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="h6 text-muted">
+                 Добрый день. Меня зовут Сергей, я изучаю курсы программирования Python.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <div class="card-text">
+          <p> Сейчас я тестирую  эту страницу и пытаюсь её подключить))
+            <br>Так же использую пока только подавал, мб. в дальнейшем подключу заголовки и картинки.</p>
+            <br><span style="color:red">Сейчас сроки поджимают,
+            в связи с этим  я закончу этот блок в свободное время)))</span>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
-    </body>
-</html>

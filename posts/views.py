@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Post, Group
+from .models import Post, Group, User
 from django.views.generic.base import TemplateView
 
 
@@ -15,7 +15,7 @@ def index(request):
     return render(
          request,
          'index.html',
-         {'page': page,}
+         {'page': page}
      )
 
 
@@ -28,10 +28,12 @@ def group_post(request, slug):
     return render(request, "group.html", {"group": group, "page": page})
 
 
-class AuthorPage(TemplateView):
-    template_name = "about/author.html"
+def profile(request, username):
+
+    return render(request, 'profile.html', {})
 
 
-class TechPage(TemplateView):
-    template_name = "about/tech.html"
-
+def post_view(request, username, post_id):
+    profile = get_object_or_404(User, username=username)
+    post = profile.posts.filter(id__exact=post_id)
+    return render(request, 'post.html', {"profile": profile, "post": post})
