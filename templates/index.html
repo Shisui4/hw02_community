@@ -4,6 +4,14 @@
 {% block content %}
 
     {% for post in page %}
+    <style>
+    hr {
+    border: none;
+    background-color: red;
+    color: red;
+    height: 2px;
+    }
+  </style>
     <h3>
         Автор: {{ post.author.get_full_name }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
     </h3>
@@ -11,4 +19,4 @@
     {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
     {% include "paginator.html" %}
-{% endblock %} 
+{% endblock %}

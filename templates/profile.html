@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Последние обновления на сайте{% endblock %}
+{% block header %}Последние обновления на сайте{% endblock %}
+{% block content %}
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-3 mb-3 mt-1">
@@ -5,11 +9,11 @@
         <div class="card-body">
           <div class="h2">
             <!-- Имя автора -->
-            Лев Толстой
+            Автор: {{author.get_full_name}}
           </div>
           <div class="h3 text-muted">
             <!-- username автора -->
-            @leo
+            @{{author.username}}
           </div>
         </div>
         <ul class="list-group list-group-flush">
@@ -22,23 +26,23 @@
           <li class="list-group-item">
             <div class="h6 text-muted">
               <!-- Количество записей -->
-              Записей: 36
+              Записей: {{posts_count}}
             </div>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="col-md-9">
-      <!-- Начало блока с отдельным постом -->
+    <!--<div class="col-md-9">
+      &lt;!&ndash; Начало блока с отдельным постом &ndash;&gt;
       <div class="card mb-3 mt-1 shadow-sm">
         <div class="card-body">
           <p class="card-text">
-            <!-- Ссылка на страницу автора в атрибуте href; username автора в тексте ссылки -->
+            &lt;!&ndash; Ссылка на страницу автора в атрибуте href; username автора в тексте ссылки &ndash;&gt;
             <a href="/leo/">
               <strong class="d-block text-gray-dark">@leo</strong>
             </a>
-            <!-- Текст поста -->
+            &lt;!&ndash; Текст поста &ndash;&gt;
             [Фокшаны.] Еще переходъ до Фокшанъ, во время котораго я ѣхалъ съ
             Монго. Человѣкъ пустой, но съ твердыми, хотя и ложными убѣжденіями.
             Генерал[у] по этому должно быть случаю, угодно было спрашивать о
@@ -50,24 +54,33 @@
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group ">
-              <!-- Ссылка на страницу записи в атрибуте href-->
+              &lt;!&ndash; Ссылка на страницу записи в атрибуте href&ndash;&gt;
               <a class="btn btn-sm text-muted" href="/leo/37/" role="button">
                 Добавить комментарий
               </a>
-              <!-- Ссылка на редактирование, показывается только автору записи.
-                Эту ссылку вы подключите в финальном задании спринта -->
+              &lt;!&ndash; Ссылка на редактирование, показывается только автору записи.
+                Эту ссылку вы подключите в финальном задании спринта &ndash;&gt;
               <a class="btn btn-sm text-muted" href="/leo/37/edit" role="button">
                 Редактировать
               </a>
             </div>
-            <!-- Дата публикации  -->
+            &lt;!&ndash; Дата публикации  &ndash;&gt;
             <small class="text-muted">31 июля 1854 г.</small>
           </div>
         </div>
       </div>
-      <!-- Конец блока с отдельным постом -->
-      <!-- Остальные посты -->
-      <!-- Здесь постраничная навигация паджинатора -->
-    </div>
+      &lt;!&ndash; Конец блока с отдельным постом &ndash;&gt;
+      &lt;!&ndash; Остальные посты &ndash;&gt;
+      &lt;!&ndash; Здесь постраничная навигация паджинатора &ndash;&gt;
+    </div>-->
+     {% for post in page %}
+    <h3>
+        Автор: {{ post.author.get_full_name }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
+    </h3>
+    <p>{{ post.text|linebreaksbr }}</p>
+    {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+    {% include "paginator.html" %}
   </div>
 </main>
+{% endblock %}
